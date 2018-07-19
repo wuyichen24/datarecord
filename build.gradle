@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: "jacoco"
+version = '1.1'
+
+buildDir = new File(rootProject.projectDir, "build")
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+}
+
+sourceSets {
+    main {
+        java.srcDirs = [file('src/java')]
+        resources.srcDirs = [file('src/resources')]
+    }
+    test {
+        java.srcDirs = [file('test/unit')]
+        resources.srcDirs = [file('test/resources')]
+    }
+}
+
+jar {
+	manifest {
+	    attributes('Implementation-Title': project.name,
+		'Implementation-Version': version)
+	}
+}
+
+dependencies {
+	// General Denpendencies
+	testCompile 'junit:junit:4.12'
+	compile 'junit-addons:junit-addons:1.4'
+	testCompile 'com.vmlens:concurrent-junit:1.0.0'
+	compile 'org.testng:testng:6.5.2'
+	compile 'org.easymock:easymock:3.4'
+
+	// Project Dependencies
+	compile fileTree(dir: 'lib', include: ['*.jar'])
+	compile group: 'mysql',            name: 'mysql-connector-java', version: '5.1.6'
+	compile group: 'org.postgresql',   name: 'postgresql',           version: '9.4.1207'
+	compile group: 'com.google.guava', name: 'guava',                version: 'r05'
+	
+	testCompile fileTree(dir: 'lib', include: ['*.jar'])
+	testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+}
