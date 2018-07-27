@@ -22,6 +22,8 @@ DataRecordManager.storeAndCommit();
 ```
 This database client also provide you an easy way to do CRUD operations. For CRUD operation, you just need to modify the DataRecord which represents one record in the Database. When you synchronize DataRecord(s) with your database, it will automatically know each DataRecord is the new record which needs to be inserted, or the existing record which needs to be updated. And also it avoid you concatenating complex insert statements and update statements.
 
+For DataRecord object itself, it is unlike the ResultSet, which will be closed automatically after the statement is closed, the DataRecord will persist the data in it after doing queries. Also unlike the ORM mechanism, you don’t have to create a Java class for each table respectively, it is lightweight and generic to do data manipulation.
+
 ## Getting Started
 
 
