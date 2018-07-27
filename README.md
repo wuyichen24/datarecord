@@ -15,6 +15,10 @@ DataRecordManager.buildConnection(DbType.MYSQL, config);
 
 This database client also Implements a commit pool which could cache the records in memory and you can decide the time to commit your change on the records. It is easy to roll back the change if there is an accident happened and improve database consistency.
 
+```java
+DataRecordManager.storeAndCommit();
+```
+
 ## Getting Started
 
 
