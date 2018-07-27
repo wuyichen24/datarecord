@@ -20,6 +20,7 @@ This database client also Implements a commit pool which could cache the records
 ```java
 DataRecordManager.storeAndCommit();
 ```
+This database client also provide you an easy way to do CRUD operations. For CRUD operation, you just need to modify the DataRecord which represents one record in the Database. When you synchronize DataRecord(s) with your database, it will automatically know each DataRecord is the new record which needs to be inserted, or the existing record which needs to be updated. And also it avoid you concatenating complex insert statements and update statements.
 
 ## Getting Started
 
