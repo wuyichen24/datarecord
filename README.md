@@ -10,7 +10,9 @@ This database client is generic which supports to connect different types of rel
 
 ```java
 GenericDbConfig config = new GenericDbConfig("localhost", "3306", "test", "root", "abcd1234");
-DataRecordManager.buildConnection(DbType.MYSQL, config);
+DataRecordManager.buildConnection(DbType.MYSQL, config);      // build connection to MySQL
+DataRecordManager.buildConnection(DbType.POSTGRESQL, config); // build connection to PostgreSQL
+DataRecordManager.buildConnection(DbType.ORACLE, config);     // build connection to Oracle
 ```
 
 This database client also Implements a commit pool which could cache the records in memory and you can decide the time to commit your change on the records. It is easy to roll back the change if there is an accident happened and improve database consistency.
