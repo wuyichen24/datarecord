@@ -44,7 +44,7 @@ public class DataRecordManagerJunitTest {
 	@Before
 	public void initialize() throws ClassNotFoundException, SQLException {
 		GenericDbConfig config = new GenericDbConfig("localhost", "3306", "test", "wuyichen", null);
-		DataRecordManager.buildConnection(DbType.MYSQL, config);
+		DataRecordManager.buildConnection(DbType.ORACLE, config);
 	}
 	
 	@Test
