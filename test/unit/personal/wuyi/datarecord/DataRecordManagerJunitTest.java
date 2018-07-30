@@ -43,8 +43,8 @@ import personal.wuyi.client.database.GenericDbConfig;
 public class DataRecordManagerJunitTest {	
 	@Before
 	public void initialize() throws ClassNotFoundException, SQLException {
-		GenericDbConfig config = new GenericDbConfig("localhost", "3306", "test", "wuyichen", null);
-		DataRecordManager.buildConnection(DbType.ORACLE, config);
+		GenericDbConfig config = new GenericDbConfig("localhost", "3306", "test", "root", null);
+		DataRecordManager.buildConnection(DbType.MYSQL, config);
 	}
 	
 	public void addDataRecord() {
@@ -54,7 +54,7 @@ public class DataRecordManagerJunitTest {
 		Assert.assertEquals(originalSizeOfCommitPool + 1, newSizeOfCommitPool);
 	}
 	
-	
+	@Test
 	public void getColumnMetadataTest() throws Exception {
 		Map<String, Class<?>> columnTypes = DataRecordManager.getColumnMetadata("GHSNV");
 		
@@ -68,7 +68,7 @@ public class DataRecordManagerJunitTest {
 		assertThat(columnTypes, IsMapContaining.hasEntry("Position",    Long.class));
 	}
 	
-	 
+	@Test 
 	public void storeAndCommitOnInsertingNewRecordTest() throws Exception {
 		DataRecord snv = DataRecordManager.addDataRecord("GHSNV");
 		snv.setDataField("SampleId",    "A2049602_1");
@@ -101,7 +101,7 @@ public class DataRecordManagerJunitTest {
 		}	
 	}
 
-	
+	@Test
 	public void compareAndGetDiffTest() {
 		DataRecord snv1 = DataRecordManager.addDataRecord("GHSNV");
 		snv1.setDataField("SampleId",    "A2049602_1");

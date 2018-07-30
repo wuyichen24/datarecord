@@ -11,3 +11,9 @@ notifications:
       - wuyichen24@gmail.com
     on_success: never
     on_failure: always
+
+services:
+  - mysql
+
+before_install:
+  - mysql -u root --password="" < config/travis.sql
