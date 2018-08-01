@@ -81,7 +81,7 @@ public class DataRecordManagerJunitTest {
 		DataRecordManager.storeAndCommit();
 	}
 	
-	
+	@Test
 	public void storeAndCommitOnUpdatingExistingRecordTest() throws Exception {
 		String whereClause = "SampleId = 'A2049602_1' and Gene = 'BRCA2'";
 		List<DataRecord> snvList = DataRecordManager.queryDataRecords("GHSNV", whereClause);
@@ -91,7 +91,7 @@ public class DataRecordManagerJunitTest {
 		DataRecordManager.storeAndCommit();
 	}
 	
-	
+	@Test
 	public void queryDataRecordsTest() throws Exception {
 		String whereClause = "SampleId = 'A2049602_1'";
 		List<DataRecord> snvList = DataRecordManager.queryDataRecords("GHSNV", whereClause);
