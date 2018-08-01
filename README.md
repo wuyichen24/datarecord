@@ -34,7 +34,7 @@ Please see our [Wiki](https://github.com/wuyichen24/datarecord/wiki) page.
 
 ## Download
 - [Download ZIP](https://github.com/wuyichen24/datarecord/archive/master.zip)
-- [Download JAR](https://github.com/wuyichen24/datarecord/releases/download/v1.1/boost-1.1.jar)
+- [Download JAR](https://github.com/wuyichen24/datarecord/releases/download/v1.1/datarecord-1.1.jar)
 
 ## Contributing
 
