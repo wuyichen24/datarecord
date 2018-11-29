@@ -385,6 +385,7 @@ public class DataRecordManager implements DataRecordManagerConstants {
 		
 		try (final Statement statement = connect.createStatement()) {
 			final String sqlStatement = generateSQLInsertStatement(dataRecord);
+			System.out.println(sqlStatement);
 			statement.executeUpdate(sqlStatement);	
 		}
 	}

@@ -1,6 +1,7 @@
 # DataRecord
 [![Build Status](https://travis-ci.org/wuyichen24/datarecord.svg?branch=master)](https://travis-ci.org/wuyichen24/datarecord)
 [![Coverage Status](https://coveralls.io/repos/github/wuyichen24/datarecord/badge.svg?branch=master)](https://coveralls.io/github/wuyichen24/datarecord?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7a9fc4894ac44bce9f823f7313ed74e9)](https://www.codacy.com/project/wuyichen24/datarecord/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wuyichen24/datarecord&amp;utm_campaign=Badge_Grade_Dashboard)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0) 
 
 The transaction-style database connector for providing easy/high-consistency database operations.
@@ -33,7 +34,7 @@ Please see our [Wiki](https://github.com/wuyichen24/datarecord/wiki) page.
 
 ## Download
 - [Download ZIP](https://github.com/wuyichen24/datarecord/archive/master.zip)
-- [Download JAR](https://github.com/wuyichen24/datarecord/releases/download/v1.1/boost-1.1.jar)
+- [Download JAR](https://github.com/wuyichen24/datarecord/releases/download/v1.1/datarecord-1.1.jar)
 
 ## Contributing
 
