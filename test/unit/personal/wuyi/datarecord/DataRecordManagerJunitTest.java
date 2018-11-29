@@ -18,6 +18,8 @@ package personal.wuyi.datarecord;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +42,26 @@ import personal.wuyi.client.database.GenericDbConfig;
  * @version 1.2
  * @since   1.1
  */
-public class DataRecordManagerJunitTest {	
+public class DataRecordManagerJunitTest {
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	private final PrintStream           originalOut = System.out;
+	private final PrintStream           originalErr = System.err;
+	
 	@Before
 	public void initialize() throws ClassNotFoundException, SQLException {
+		buildConnection();
+		setUpStreams();
+	}
+	
+	public void buildConnection() throws ClassNotFoundException, SQLException {
 		GenericDbConfig config = new GenericDbConfig("localhost", "3306", "test", "root", null);
 		DataRecordManager.buildConnection(DbType.MYSQL, config);
+	}
+	
+	public void setUpStreams() {
+		System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
 	}
 	
 	public void addDataRecord() {
@@ -135,8 +152,41 @@ public class DataRecordManagerJunitTest {
 		assertThat(diff, IsDataRecordContaining.hasEntry("Position",    1744567441L));
 	}
 	
+	@Test
+	public void printDataRecordTest() {
+		DataRecord snv = DataRecordManager.addDataRecord("GHSNV");
+		snv.setDataField("SampleId",    "A2049602_1");
+		snv.setDataField("RunId",       "160122_NB501062_0070_AHWNNNBGXX");
+		snv.setDataField("Gene",        "BRCA2");
+		snv.setDataField("Mutation_AA", "R232L");
+		snv.setDataField("Percentage",  19.3);
+		snv.setDataField("Chrom",       10);
+		snv.setDataField("Position",    1744567441L);
+		
+		snv.printDataRecord();
+				
+		Assert.assertEquals("SampleId A2049602_1\n" + 
+				"RunId 160122_NB501062_0070_AHWNNNBGXX\n" + 
+				"Gene BRCA2\n" + 
+				"Mutation_AA R232L\n" + 
+				"Percentage 19.3\n" + 
+				"Chrom 10\n" + 
+				"Position 1744567441\n", outContent.toString());
+	}
+	
 	@After
+	public void cleanUp() throws SQLException {
+		closeConnection();
+		restoreStreams();
+	}
+	
+	
 	public void closeConnection() throws SQLException {
 		DataRecordManager.closeConnection();
+	}
+	
+	public void restoreStreams() {
+	    System.setOut(originalOut);
+	    System.setErr(originalErr);
 	}
 }
