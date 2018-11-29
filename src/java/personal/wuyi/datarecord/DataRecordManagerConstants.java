@@ -45,12 +45,14 @@ interface DataRecordManagerConstants {
 	 */
 	Map<String, Class<?>> COLUMN_TYPE_MAP = new HashMap<String, Class<?>>() {
 		private static final long serialVersionUID = 1L;
-	{
-		put("VARCHAR", String.class);
-		put("INT",     Integer.class);
-		put("BIGINT",  Long.class);
-		put("DOUBLE",  Double.class);
-	}};
+		
+		{
+			put("VARCHAR", String.class);
+			put("INT",     Integer.class);
+			put("BIGINT",  Long.class);
+			put("DOUBLE",  Double.class);
+		}
+	};
 	
 	/** The template for select statements. */
 	String SELECT_STATEMENT = "SELECT * FROM ";

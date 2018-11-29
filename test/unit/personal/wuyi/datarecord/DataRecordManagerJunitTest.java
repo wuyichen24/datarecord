@@ -37,7 +37,7 @@ import personal.wuyi.client.database.GenericDbConfig;
  * 
  * @author  Wuyi Chen
  * @date    07/12/2018
- * @version 1.1
+ * @version 1.2
  * @since   1.1
  */
 public class DataRecordManagerJunitTest {	
@@ -91,14 +91,19 @@ public class DataRecordManagerJunitTest {
 		DataRecordManager.storeAndCommit();
 	}
 	
-	
+	@Test
 	public void queryDataRecordsTest() throws Exception {
-		String whereClause = "SampleId = 'A2049602_1'";
+		String whereClause = "SampleId = 'A09090101'";
 		List<DataRecord> snvList = DataRecordManager.queryDataRecords("GHSNV", whereClause);
-		for (DataRecord snv : snvList) {
-			snv.printDataRecord();
-			System.out.println("========================");
-		}	
+		
+		Assert.assertEquals(1, snvList.size());
+		Assert.assertEquals("A09090101",                       snvList.get(0).getStringVal("SampleId"));
+		Assert.assertEquals("160122_NB501062_0070_AHWNNNBGXX", snvList.get(0).getStringVal("RunId"));
+		Assert.assertEquals("EGFR",                            snvList.get(0).getStringVal("Gene"));
+		Assert.assertEquals("T790M",                           snvList.get(0).getStringVal("Mutation_AA"));
+		Assert.assertEquals(new Double(10.5),                  snvList.get(0).getDoubleVal("Percentage"));
+		Assert.assertEquals(new Integer(8),                    snvList.get(0).getIntegerVal("Chrom"));
+		Assert.assertEquals(new Long(1744567456),              snvList.get(0).getLongVal("Position"));
 	}
 
 	@Test
@@ -123,7 +128,11 @@ public class DataRecordManagerJunitTest {
 		
 		DataRecord diff = DataRecordManager.compareAndGetDiff(snv1, snv2);
 	
-		diff.printDataRecord();
+		assertThat(diff, IsDataRecordContaining.hasEntry("Gene",        "BRCA2"));
+		assertThat(diff, IsDataRecordContaining.hasEntry("Mutation_AA", "R232L"));
+		assertThat(diff, IsDataRecordContaining.hasEntry("Percentage",  19.3));
+		assertThat(diff, IsDataRecordContaining.hasEntry("Chrom",       10));
+		assertThat(diff, IsDataRecordContaining.hasEntry("Position",    1744567441L));
 	}
 	
 	@After

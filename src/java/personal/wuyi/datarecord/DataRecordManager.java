@@ -16,7 +16,6 @@
 
 package personal.wuyi.datarecord;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
 import java.sql.Connection;
@@ -255,7 +254,7 @@ public class DataRecordManager implements DataRecordManagerConstants {
 	 */
 	protected static Map<String, Class<?>> getColumnMetadata(final String tableName) throws SQLException {
 		Preconditions.checkNotNull(connect);
-		checkArgument(!isNullOrEmpty(tableName), "tableName is null or empty");
+		Preconditions.checkArgument(!isNullOrEmpty(tableName), "tableName is null or empty");
 		
 		final Map<String, Class<?>> columnTypes = new LinkedHashMap<>();
 		
@@ -363,7 +362,7 @@ public class DataRecordManager implements DataRecordManagerConstants {
 	 * @since   1.1
 	 */
 	public static List<DataRecord> queryDataRecords(final String dataType, final String whereClause) throws SQLException  {
-		checkArgument(!isNullOrEmpty(dataType), "dataType is null or empty");
+		Preconditions.checkArgument(!isNullOrEmpty(dataType), "dataType is null or empty");
 		
 		final List<DataRecord> dataRecordList = queryDataRecordsBase(dataType, whereClause);
 		commitPool.addAll(dataRecordList);
@@ -595,7 +594,7 @@ public class DataRecordManager implements DataRecordManagerConstants {
 	 * @since   1.1
 	 */
 	protected static String generateSQLQueryStatement(final String dataType, final String whereClause) {
-		checkArgument(!isNullOrEmpty(dataType), "dataType is null or empty");
+		Preconditions.checkArgument(!isNullOrEmpty(dataType), "dataType is null or empty");
 		
 		final StringBuilder sqlStatement = new StringBuilder();
 		if (isNullOrEmpty(whereClause)) {
