@@ -17,6 +17,7 @@
 package personal.wuyi.datarecord;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -103,5 +104,17 @@ public class DataRecordJunitTest {
 		Assert.assertEquals(new Double(14.5),                  (Double) snv.getValue("Percentage"));
 		Assert.assertEquals(new Integer(14),                   (Integer) snv.getValue("Chrom"));
 		Assert.assertEquals(new Long(178917560L),              (Long) snv.getValue("Position"));
+	}
+	
+	@Test(expected = NoSuchElementException.class) 
+	public void checkFieldExistTest() {
+		DataRecord snv = setDataRecord();
+		snv.getDoubleVal("PFRatio");
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void checkFieldType() {
+		DataRecord snv = setDataRecord();
+		snv.getDoubleVal("SampleId");
 	}
 }
