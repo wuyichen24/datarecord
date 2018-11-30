@@ -92,4 +92,16 @@ public class DataRecordJunitTest {
 		
 		Assert.assertEquals("GHSNV", snv.getDataTypeName());
 	}
+	
+	@Test
+	public void getValueTest() {
+		DataRecord snv = setDataRecord();
+		Assert.assertEquals("A2049602_1",                      (String) snv.getValue("SampleId"));
+		Assert.assertEquals("160122_NB501062_0070_AHWNNNBGXX", (String) snv.getValue("RunId"));
+		Assert.assertEquals("PIK3CA",                          (String) snv.getValue("Gene"));
+		Assert.assertEquals("N145N",                           (String) snv.getValue("Mutation_AA"));
+		Assert.assertEquals(new Double(14.5),                  (Double) snv.getValue("Percentage"));
+		Assert.assertEquals(new Integer(14),                   (Integer) snv.getValue("Chrom"));
+		Assert.assertEquals(new Long(178917560L),              (Long) snv.getValue("Position"));
+	}
 }

@@ -85,14 +85,6 @@ public class DataRecord implements Serializable {
 	 */
 	private long recordId;
 	
-	
-	/**
-	 * Construct a {@code DataRecord}.
-	 * 
-	 * @since   1.1
-	 */
-	protected DataRecord() { }
-	
 	/**
 	 * Construct a {@code DataRecord}.
 	 * 
