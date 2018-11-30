@@ -155,7 +155,7 @@ public class DataRecord implements Serializable {
 		
 		valueMap.put(fieldName, value);
 		typeMap.put(fieldName, String.class);
-		isModified = true;
+		setModified(true);
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class DataRecord implements Serializable {
 		
 		valueMap.put(fieldName, value);
 		typeMap.put(fieldName, Integer.class);
-		isModified = true;
+		setModified(true);
 	}
 	
 	/**
@@ -203,7 +203,7 @@ public class DataRecord implements Serializable {
 		
 		valueMap.put(fieldName, value);
 		typeMap.put(fieldName, Long.class);
-		isModified = true;
+		setModified(true);
 	}
 	
 	/**
@@ -227,7 +227,7 @@ public class DataRecord implements Serializable {
 		
 		valueMap.put(fieldName, value);
 		typeMap.put(fieldName, Double.class);
-		isModified = true;
+		setModified(true);
 	}
 	
 	/**
