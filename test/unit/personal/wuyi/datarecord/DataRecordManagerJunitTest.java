@@ -64,6 +64,7 @@ public class DataRecordManagerJunitTest {
 	    System.setErr(new PrintStream(errContent));
 	}
 	
+	@Test
 	public void addDataRecord() {
 		int originalSizeOfCommitPool = DataRecordManager.getSizeOfCommitPool();
 		DataRecordManager.addDataRecord("GHSNV");	
@@ -87,8 +88,11 @@ public class DataRecordManagerJunitTest {
 	
 	@Test 
 	public void storeAndCommitOnInsertingNewRecordTest() throws Exception {
+		String whereClause = "SampleId = 'A3030301'";
+		int originalSizeInDb = DataRecordManager.queryDataRecords("GHSNV", whereClause).size();
+		
 		DataRecord snv = DataRecordManager.addDataRecord("GHSNV");
-		snv.setDataField("SampleId",    "A2049602_1");
+		snv.setDataField("SampleId",    "A3030301");
 		snv.setDataField("RunId",       "160122_NB501062_00'70_AHWNNNBGYY");
 		snv.setDataField("Gene",        "EGFR");
 		snv.setDataField("Mutation_AA", "T790M");
@@ -96,6 +100,9 @@ public class DataRecordManagerJunitTest {
 		snv.setDataField("Chrom",       7);
 		snv.setDataField("Position",    1744567441L);
 		DataRecordManager.storeAndCommit();
+		
+		int newSizeInDb = DataRecordManager.queryDataRecords("GHSNV", whereClause).size();
+		Assert.assertEquals(originalSizeInDb + 1, newSizeInDb);
 	}
 	
 	@Test
@@ -179,7 +186,6 @@ public class DataRecordManagerJunitTest {
 		closeConnection();
 		restoreStreams();
 	}
-	
 	
 	public void closeConnection() throws SQLException {
 		DataRecordManager.closeConnection();
